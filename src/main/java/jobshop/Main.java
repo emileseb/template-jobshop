@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
+import jobshop.encodings.PriorityRules;
 import jobshop.solvers.*;
 import net.sourceforge.argparse4j.ArgumentParsers;
 import net.sourceforge.argparse4j.inf.ArgumentParser;
@@ -25,6 +26,15 @@ public class Main {
         solvers.put("basic", new BasicSolver());
         solvers.put("random", new RandomSolver());
         // add new solvers here
+        solvers.put("greedySPT", new GreedySolver(PriorityRules.SPT));
+        solvers.put("greedyLPT", new GreedySolver(PriorityRules.LPT));
+        solvers.put("greedySRPT", new GreedySolver(PriorityRules.SRPT));
+        solvers.put("greedyLRPT", new GreedySolver(PriorityRules.LRPT));
+        solvers.put("greedyESTSPT", new GreedySolver(PriorityRules.EST_SPT));
+        solvers.put("greedyESTLPT", new GreedySolver(PriorityRules.EST_LPT));
+        solvers.put("greedyESTSRPT", new GreedySolver(PriorityRules.EST_SRPT));
+        solvers.put("greedyESTLRPT", new GreedySolver(PriorityRules.EST_LRPT));
+        solvers.put("descent", new DescentSolver());
     }
 
 
@@ -142,5 +152,6 @@ public class Main {
             e.printStackTrace();
             System.exit(1);
         }
+        System.out.println("\n");
     }
 }

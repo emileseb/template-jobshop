@@ -9,7 +9,7 @@ Compilation instructions are given for Linux. On windows you can use the `gradle
 
 ```
 ❯ ./gradlew build  # Compiles the project
-❯ ./gradlew jar      # Creates a fat-jar in build/libs/JSP.jar
+❯ ./gradlew jar      # Creates a fat-jar in build/libs/J/home/emile/Documents/INSA/sem8/methaheuristique/template-jobshopSP.jar
 ```
 
 The compiled jar is now `build/libs/JSP.jar` can be executed like so :

@@ -20,6 +20,17 @@ public class Schedule {
         }
     }
 
+    public String toString(){
+        StringBuilder resultat = new StringBuilder();
+        for (int i = 0; i < pb.numJobs; i++){
+            resultat.append("Job number ").append(i).append(" :\n");
+            for (int j=0;j<pb.numTasks;j++) {
+                resultat.append("Task number ").append(j).append(" starts at time ").append(times[i][j]).append("\n");
+            }
+        }
+        return resultat.toString();
+    }
+
     public int startTime(int job, int task) {
         return times[job][task];
     }
