@@ -38,7 +38,7 @@ public class GreedySolver implements Solver {
         //Boucle---------------------------------------
         int m, t_startingTime;
         Task t;
-        while (realisableTaskList.size()>0){
+        while (realisableTaskList.size()>0 &&  (deadline - System.currentTimeMillis() > 1)){
             //Choose rule for the greedy filling :
             switch (this.rule){
                 case SPT:
@@ -83,7 +83,11 @@ public class GreedySolver implements Solver {
         }
         //----------------------------------------------        }
         Schedule schedule = order.toSchedule();
-        return new Result(instance,schedule,Result.ExitCause.Blocked);
+        if (deadline - System.currentTimeMillis() <= 1) {
+            return new Result(instance, order.toSchedule(), Result.ExitCause.Timeout);
+        }else {
+            return new Result(instance, order.toSchedule(), Result.ExitCause.ProvedOptimal);
+        }
     }
 
     //(Shortest Processing Time)

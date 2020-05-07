@@ -107,7 +107,11 @@ public class DescentSolver implements Solver {
                 }
             }
         }
-        return new Result(instance, order.toSchedule(), Result.ExitCause.Timeout);
+        if (deadline - System.currentTimeMillis() < 1) {
+            return new Result(instance, order.toSchedule(), Result.ExitCause.Timeout);
+        }else {
+            return new Result(instance, order.toSchedule(), Result.ExitCause.ProvedOptimal);
+        }
     }
 
     private List<Block> blocksOfCriticalPath(ResourceOrder order) {
