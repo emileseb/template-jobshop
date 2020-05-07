@@ -35,6 +35,10 @@ public class Main {
         solvers.put("greedyESTSRPT", new GreedySolver(PriorityRules.EST_SRPT));
         solvers.put("greedyESTLRPT", new GreedySolver(PriorityRules.EST_LRPT));
         solvers.put("descent", new DescentSolver());
+        solvers.put("taboo_1000_50", new TabooSolver(1000, 50));
+        solvers.put("taboo_10_10", new TabooSolver(10, 10));
+        solvers.put("taboo_1_1", new TabooSolver(1, 1));
+        solvers.put("taboo_2000_10", new TabooSolver(2000, 10));
     }
 
 
