@@ -16,7 +16,7 @@ import net.sourceforge.argparse4j.inf.ArgumentParser;
 import net.sourceforge.argparse4j.inf.ArgumentParserException;
 import net.sourceforge.argparse4j.inf.Namespace;
 
-
+//java -jar build/libs/JSP.jar --solver greedyESTLRPT descent taboo_2000_10 --instance aaa1 ft06 ft10 ft20 la01 la02 la03 la04 la05 la06 la07 la08 la09
 public class Main {
 
     /** All solvers available in this program */
@@ -26,6 +26,7 @@ public class Main {
         solvers.put("basic", new BasicSolver());
         solvers.put("random", new RandomSolver());
         // add new solvers here
+
         solvers.put("greedySPT", new GreedySolver(PriorityRules.SPT));
         solvers.put("greedyLPT", new GreedySolver(PriorityRules.LPT));
         solvers.put("greedySRPT", new GreedySolver(PriorityRules.SRPT));
@@ -34,11 +35,15 @@ public class Main {
         solvers.put("greedyESTLPT", new GreedySolver(PriorityRules.EST_LPT));
         solvers.put("greedyESTSRPT", new GreedySolver(PriorityRules.EST_SRPT));
         solvers.put("greedyESTLRPT", new GreedySolver(PriorityRules.EST_LRPT));
+
         solvers.put("descent", new DescentSolver());
+
         solvers.put("taboo_1000_50", new TabooSolver(1000, 50));
         solvers.put("taboo_10_10", new TabooSolver(10, 10));
-        solvers.put("taboo_1_1", new TabooSolver(1, 1));
+        solvers.put("taboo_10_4", new TabooSolver(10, 4));
         solvers.put("taboo_2000_10", new TabooSolver(2000, 10));
+        solvers.put("taboo_1000_750", new TabooSolver(1000, 750));
+        solvers.put("taboo_2000_1500", new TabooSolver(2000, 15000));
     }
 
 

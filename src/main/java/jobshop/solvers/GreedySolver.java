@@ -116,16 +116,16 @@ public class GreedySolver implements Solver {
     private Task getSRPT(ResourceOrder order, ArrayList<Task> realisableTaskList){
         Task t = realisableTaskList.get(0);
         int bestJob =-1;
-        int[] remainingTimeByJob = new int[realisableTaskList.size()];
+        int remainingTimeByJob;
         //On calcul le temps restant de chaque Job
         for (int i =0; i < realisableTaskList.size() ; i++){
-            remainingTimeByJob[i]=0;
+            remainingTimeByJob = 0;
             for (int tacheRestante = realisableTaskList.get(i).task ; tacheRestante < order.instance.numTasks ; tacheRestante++){
-                remainingTimeByJob[i] += order.instance.duration(realisableTaskList.get(i).job,tacheRestante);
+                remainingTimeByJob += order.instance.duration(realisableTaskList.get(i).job,tacheRestante);
             }
             if (bestJob==-1)
-                bestJob = remainingTimeByJob[i];
-            else if (remainingTimeByJob[i] < bestJob){
+                bestJob = remainingTimeByJob;
+            else if (remainingTimeByJob < bestJob){
                     t=realisableTaskList.get(i);
             }
         }
@@ -136,16 +136,16 @@ public class GreedySolver implements Solver {
     private Task getLRPT(ResourceOrder order, ArrayList<Task> realisableTaskList){
         Task t = realisableTaskList.get(0);
         int bestJob =-1;
-        int[] remainingTimeByJob = new int[realisableTaskList.size()];
+        int remainingTimeByJob;
         //On calcul le temps restant de chaque Job
         for (int i =0; i < realisableTaskList.size() ; i++){
-            remainingTimeByJob[i]=0;
+            remainingTimeByJob=0;
             for (int tacheRestante = realisableTaskList.get(i).task ; tacheRestante < order.instance.numTasks ; tacheRestante++){
-                remainingTimeByJob[i] += order.instance.duration(realisableTaskList.get(i).job,tacheRestante);
+                remainingTimeByJob += order.instance.duration(realisableTaskList.get(i).job,tacheRestante);
             }
             if (bestJob==-1)
-                bestJob = remainingTimeByJob[i];
-            else if (remainingTimeByJob[i] > bestJob)
+                bestJob = remainingTimeByJob;
+            else if (remainingTimeByJob > bestJob)
                 t=realisableTaskList.get(i);
         }
         return t;
