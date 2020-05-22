@@ -1,0 +1,6 @@
+#!/bin/bash
+i=100
+for j in `seq 1 $i`;
+do
+  java -jar build/libs/JSP.jar --solver taboo${i}_${j} --instance aaa1 ft06 ft10 ft20 la01 la02 la03 la04 la05 la06 la07 la08 la09
+done

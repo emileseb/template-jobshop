@@ -38,12 +38,14 @@ public class Main {
 
         solvers.put("descent", new DescentSolver());
 
-        solvers.put("taboo_1000_50", new TabooSolver(1000, 50));
-        solvers.put("taboo_10_10", new TabooSolver(10, 10));
-        solvers.put("taboo_10_4", new TabooSolver(10, 4));
-        solvers.put("taboo_2000_10", new TabooSolver(2000, 10));
-        solvers.put("taboo_1000_750", new TabooSolver(1000, 750));
-        solvers.put("taboo_2000_1500", new TabooSolver(2000, 15000));
+        solvers.put("taboomax_1",new TabooSolver(Integer.MAX_VALUE, 1));
+        solvers.put("taboomax_max",new TabooSolver(Integer.MAX_VALUE, Integer.MAX_VALUE));
+
+        for (int i = 0;i<=2000;i++){
+            for (int j=0;j<=i; j++){
+                solvers.put("taboo"+i+"_"+j, new TabooSolver(i, j));
+            }
+        }
     }
 
 

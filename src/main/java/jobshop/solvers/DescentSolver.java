@@ -116,23 +116,23 @@ public class DescentSolver implements Solver {
 
     private List<Block> blocksOfCriticalPath(ResourceOrder order) {
         List<Block> blocklist = new ArrayList<>();
-        List<Task> tasklist = order.toSchedule().criticalPath();
-        int first_task, orderPointeur, criticalPathPointer ;
+        List<Task> criticalPath = order.toSchedule().criticalPath();
+        int first_task, jobPointeur, criticalPathPointer ;
         for (int machine=0; machine <order.toSchedule().pb.numMachines;machine++) {
-            orderPointeur=0;
-            while (orderPointeur < (order.toSchedule().pb.numJobs-1)) {
-                if (tasklist.contains(order.tasksByMachine[machine][orderPointeur])) {
-                    criticalPathPointer= tasklist.indexOf(order.tasksByMachine[machine][orderPointeur]);
-                    if(machine==order.toSchedule().pb.machine(tasklist.get(criticalPathPointer+1))) {
-                        first_task = orderPointeur;
-                        while (criticalPathPointer<(tasklist.size()-1) && machine==order.toSchedule().pb.machine(tasklist.get(criticalPathPointer + 1))) {
+            jobPointeur=0;
+            while (jobPointeur < (order.toSchedule().pb.numJobs-1)) {
+                if (criticalPath.contains(order.tasksByMachine[machine][jobPointeur])) {
+                    criticalPathPointer= criticalPath.indexOf(order.tasksByMachine[machine][jobPointeur]);
+                    if(machine==order.toSchedule().pb.machine(criticalPath.get(criticalPathPointer+1))) {
+                        first_task = jobPointeur;
+                        while (criticalPathPointer<(criticalPath.size()-1) && machine==order.toSchedule().pb.machine(criticalPath.get(criticalPathPointer + 1))) {
                             criticalPathPointer++;
-                            orderPointeur++;
+                            jobPointeur++;
                         }
-                        blocklist.add(new Block(machine, first_task, orderPointeur));
+                        blocklist.add(new Block(machine, first_task, jobPointeur));
                     }
                 }
-                orderPointeur++;
+                jobPointeur++;
             }
         }
         return blocklist;
